@@ -3,7 +3,7 @@ package handler
 import (
 	"context"
 	"fmt"
-	greet "grpc-service/grpc-service/pb/go"
+	greet "grpc-server/grpc-server/pb/go"
 )
 
 type Greet struct {

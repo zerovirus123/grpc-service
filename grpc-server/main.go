@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	greet "grpc-service/grpc-service/pb/go"
-	"grpc-service/grpc-service/pb/handler"
+	greet "grpc-server/grpc-server/pb/go"
+	"grpc-server/grpc-server/pb/handler"
 
 	"log"
 	"net"
