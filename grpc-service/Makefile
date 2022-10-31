@@ -1,0 +1,2 @@
+generate-protobuf:
+	@rm -rf grpc-service/${name}/go/** && protoc -I=grpc-service/${name}/proto --go_out=paths=source_relative:grpc-service/${name}/go --go-grpc_out=paths=source_relative:grpc-service/${name}/go grpc-service/${name}/proto/*.proto

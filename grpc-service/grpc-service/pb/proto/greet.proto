@@ -1,0 +1,24 @@
+// this protobuf file can be shared across the clients.
+// clients can generate this code on their side, so that
+// they can communicate with the grpc server
+
+syntax = "proto3"; 
+
+package greet;
+
+option go_package = "grpc-service/proto/greet"; //needed to generate the go code from protobuf
+
+// service here refers to the method contract the client must fulfill in order to call this service
+service GreetService{
+    rpc Greeting(GreetingRequest) returns (GreetingResponse){}
+}
+
+// The request message contains the user's name
+message GreetingRequest{
+    string name = 1;
+}
+
+// The response message contains the greetings
+message GreetingResponse{
+    string message = 1;
+}
