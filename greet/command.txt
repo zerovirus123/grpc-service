@@ -1,0 +1,3 @@
+
+
+python -m grpc_tools.protoc -I ../grpc/proto --python_out=. --grpc_python_out=. ../grpc/proto/greet.proto
