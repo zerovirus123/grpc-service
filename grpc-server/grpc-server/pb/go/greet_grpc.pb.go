@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: greet.proto
 
-package greet
+package proto
 
 import (
 	context "context"
@@ -35,7 +35,7 @@ func NewGreetServiceClient(cc grpc.ClientConnInterface) GreetServiceClient {
 
 func (c *greetServiceClient) Greeting(ctx context.Context, in *GreetingRequest, opts ...grpc.CallOption) (*GreetingResponse, error) {
 	out := new(GreetingResponse)
-	err := c.cc.Invoke(ctx, "/greet.GreetService/Greeting", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/proto.GreetService/Greeting", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func _GreetService_Greeting_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/greet.GreetService/Greeting",
+		FullMethod: "/proto.GreetService/Greeting",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(Server).Greeting(ctx, req.(*GreetingRequest))
@@ -92,7 +92,7 @@ func _GreetService_Greeting_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GreetService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "greet.GreetService",
+	ServiceName: "proto.GreetService",
 	HandlerType: (*Server)(nil),
 	Methods: []grpc.MethodDesc{
 		{

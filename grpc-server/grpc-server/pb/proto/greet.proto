@@ -4,9 +4,9 @@
 
 syntax = "proto3"; 
 
-package greet;
+package proto;
 
-option go_package = "grpc-server/proto/greet"; //needed to generate the go code from protobuf
+option go_package = "grpc-server/pb/proto"; //needed to generate the go code from protobuf
 
 // service here refers to the method contract the client must fulfill in order to call this service
 service GreetService{
