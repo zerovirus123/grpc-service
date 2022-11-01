@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "grpc/greet/proto";
 
-package proto;
+package greet;
 
 // service here refers to the method contract the client must fulfill in order to call this service
 service GreetService{

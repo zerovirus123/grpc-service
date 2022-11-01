@@ -35,38 +35,38 @@ func NewGreetServiceClient(cc grpc.ClientConnInterface) GreetServiceClient {
 
 func (c *greetServiceClient) Greeting(ctx context.Context, in *GreetingRequest, opts ...grpc.CallOption) (*GreetingResponse, error) {
 	out := new(GreetingResponse)
-	err := c.cc.Invoke(ctx, "/proto.GreetService/Greeting", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/greet.GreetService/Greeting", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GreetServiceServer is the server API for GreetService service.
-// All implementations must embed UnimplementedGreetServiceServer
+// Server is the server API for GreetService service.
+// All implementations must embed UnimplementedServer
 // for forward compatibility
-type GreetServiceServer interface {
+type Server interface {
 	Greeting(context.Context, *GreetingRequest) (*GreetingResponse, error)
-	mustEmbedUnimplementedGreetServiceServer()
+	mustEmbedUnimplementedServer()
 }
 
-// UnimplementedGreetServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedGreetServiceServer struct {
+// UnimplementedServer must be embedded to have forward compatible implementations.
+type UnimplementedServer struct {
 }
 
-func (UnimplementedGreetServiceServer) Greeting(context.Context, *GreetingRequest) (*GreetingResponse, error) {
+func (UnimplementedServer) Greeting(context.Context, *GreetingRequest) (*GreetingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Greeting not implemented")
 }
-func (UnimplementedGreetServiceServer) mustEmbedUnimplementedGreetServiceServer() {}
+func (UnimplementedServer) mustEmbedUnimplementedServer() {}
 
-// UnsafeGreetServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GreetServiceServer will
+// UnsafeServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to Server will
 // result in compilation errors.
-type UnsafeGreetServiceServer interface {
-	mustEmbedUnimplementedGreetServiceServer()
+type UnsafeServer interface {
+	mustEmbedUnimplementedServer()
 }
 
-func RegisterGreetServiceServer(s grpc.ServiceRegistrar, srv GreetServiceServer) {
+func RegisterServer(s grpc.ServiceRegistrar, srv Server) {
 	s.RegisterService(&GreetService_ServiceDesc, srv)
 }
 
@@ -76,14 +76,14 @@ func _GreetService_Greeting_Handler(srv interface{}, ctx context.Context, dec fu
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GreetServiceServer).Greeting(ctx, in)
+		return srv.(Server).Greeting(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/proto.GreetService/Greeting",
+		FullMethod: "/greet.GreetService/Greeting",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreetServiceServer).Greeting(ctx, req.(*GreetingRequest))
+		return srv.(Server).Greeting(ctx, req.(*GreetingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -92,8 +92,8 @@ func _GreetService_Greeting_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var GreetService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.GreetService",
-	HandlerType: (*GreetServiceServer)(nil),
+	ServiceName: "greet.GreetService",
+	HandlerType: (*Server)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Greeting",
