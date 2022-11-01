@@ -2,6 +2,7 @@
 A simple demonstration of a gRPC protocol, using a Python client and a Golang server.
 
 ## Instructions
+Go into the `grpc-service` directory and follow the instructions.
 
 ### Setting up the Client Environment
 Create a virtual environment with `python -m venv venv`
